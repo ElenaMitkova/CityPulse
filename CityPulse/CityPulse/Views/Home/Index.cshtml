@@ -2,7 +2,18 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="wrapper">
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+        <div class="panel text-center p-5 shadow-lg">
+            <span class="badge rounded-pill bg-light text-primary px-3 py-2 mb-3 border">Your city, your voice</span>
+            <h1 class="display-3 fw-bold mb-3" style="color: #1a2a44;">
+                The city is in <span class="text-gradient">your</span> hands.
+            </h1>
+            <p class="lead text-secondary mb-5 mx-auto" style="max-width: 650px;">Report an irregularity in your neighborhood and monitor its removal in real time.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a asp-controller="Reports" asp-action="Index" class="btn btn-outline-primary btn-lg rounded-pill px-5 border-2">All Signals</a>
+                <a asp-controller="Reports" asp-action="Create" class="btn btn-primary-gradient btn-lg rounded-pill px-5 shadow">Report</a>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,22 @@
+﻿.wrapper { /*background for the section*/
+    background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+    border-radius: 30px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.panel { /*section on the top of the previous section*/
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.btn-outline-primary { /*button*/
+    color: #007bff;
+    border-color: #007bff;
+    font-weight: 600;
+}
