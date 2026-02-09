@@ -23,10 +23,10 @@ namespace CityPulse.Models
         [Required]
         public string Password { get; set; } = null!;
 
-        [Column(DateTimeColumnType)]
+        [Column(TypeName = DateTimeColumnType)]
         public DateTime JoinedOn { get; set; }
-
-        [Column(DateTimeColumnType)]
+        
+        [Column(TypeName = DateTimeColumnType)]
         public DateTime LastLogIn { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

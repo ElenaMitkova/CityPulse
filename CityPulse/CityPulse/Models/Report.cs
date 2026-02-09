@@ -25,10 +25,10 @@ namespace CityPulse.Models
         [Required]
         public double Longtitude { get; set; }
 
-        [Column(DateTimeColumnType)]
+        [Column(TypeName = DateTimeColumnType)]
         public DateTime CreatedAt { get; set; }
 
-        [Column(DateTimeColumnType)]
+        [Column(TypeName = DateTimeColumnType)]
         public DateTime ModifiedOn { get; set; }
 
         [Required]
