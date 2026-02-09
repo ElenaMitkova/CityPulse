@@ -1,4 +1,4 @@
-namespace CityPulse.Models
+namespace CityPulse.ViewModels
 {
     public class ErrorViewModel
     {

@@ -1,0 +1,22 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using static CityPulse.Common.EntityValidations.District;
+
+namespace CityPulse.Models
+{
+    public class District
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [MaxLength()]
+        public string Name { get; set; } = null!;
+
+        [Required]
+        [ForeignKey(nameof(City))]
+        public int CityId { get; set; }
+
+        public City City { get; set; } = null!;
+    }
+}

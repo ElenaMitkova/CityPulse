@@ -1,4 +1,4 @@
-using CityPulse.Models;
+using CityPulse.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
