@@ -47,6 +47,6 @@ button.accept-policy {
   line-height: 60px;
 }
 
-.navbar {
+.navbar, .footer {
     background-color: #86b7fe52 !important;
 }
