@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using static CityPulse.Common.EntityValidations.Report;
 using static CityPulse.Common.EntityValidations;
 using CityPulse.Models.Enums;
+using Newtonsoft.Json;
 
 namespace CityPulse.Models
 {
@@ -15,7 +16,14 @@ namespace CityPulse.Models
         [MaxLength(ReportTitleMaxLength)]
         public string Title { get; set; } = null!;
 
+        [Required]
         public string Description { get; set; } = null!;
+
+        [Required]
+        public double Latitude { get; set; }
+
+        [Required]
+        public double Longtitude { get; set; }
 
         [Column(DateTimeColumnType)]
         public DateTime CreatedAt { get; set; }
