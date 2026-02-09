@@ -30,5 +30,14 @@
             public const int UserEmailMinLength = 5;
             public const int UserEmailMaxLength = 254;
         }
+
+        public static class Report
+        {
+            public const int ReportTitleMinLength = 2;
+            public const int ReportTitleMaxLength = 200;
+
+            public const int UserEmailMinLength = 5;
+            public const int UserEmailMaxLength = 254;
+        }
     }
 }
