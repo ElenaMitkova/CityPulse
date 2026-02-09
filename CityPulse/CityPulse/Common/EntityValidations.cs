@@ -2,6 +2,8 @@
 {
     public static class EntityValidations
     {
+        public const string DateTimeColumnType = "datetime2";
+
         public static class City
         {
             public const int CityNameMinLength = 2;
@@ -24,6 +26,9 @@
         {
             public const int UserFullNameMinLength = 2;
             public const int UserFullNameMaxLength = 200;
+
+            public const int UserEmailMinLength = 5;
+            public const int UserEmailMaxLength = 254;
         }
     }
 }
