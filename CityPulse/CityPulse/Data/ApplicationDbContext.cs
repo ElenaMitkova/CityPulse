@@ -17,6 +17,5 @@ namespace CityPulse.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Report> Reports { get; set; }
-        public DbSet<User> Users { get; set; }
     }
 }

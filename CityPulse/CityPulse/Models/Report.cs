@@ -34,16 +34,6 @@ namespace CityPulse.Models
         [Required]
         public ReportStatus Status { get; set; }
 
-        [ForeignKey(nameof(Author))]
-        public int? AuthorId { get; set; }
-
-        public User? Author { get; set; }
-
-        [ForeignKey(nameof(Modifier))]
-        public int? ModifierId { get; set; }
-
-        public User? Modifier { get; set; }
-
         [Required]
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }

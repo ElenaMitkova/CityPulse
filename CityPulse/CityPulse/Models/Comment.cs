@@ -10,12 +10,6 @@ namespace CityPulse.Models
         public int Id { get; set; }
 
         [Required]
-        [ForeignKey(nameof(Author))]
-        public int? AuthorId { get; set; }
-
-        public User Author { get; set; } = null!;
-
-        [Required]
         public string Content { get; set; } = null!;
 
         [Required]
