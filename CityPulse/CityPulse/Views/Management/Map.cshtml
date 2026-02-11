@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "City Map";
+}
+
+<div class="container mt-4">
+    <div class="glass-panel-light p-4 shadow-lg">
+        <h2 class="mb-4 text-center text-secondary">City problems in real time!</h2>
+        <div id="allReportsMap" style="height: 600px; border-radius: 25px;" class="shadow-sm border"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var map = L.map('allReportsMap').setView([42.6977, 23.3219], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap'
+            }).addTo(map);    
+        });
+    </script>
+}
