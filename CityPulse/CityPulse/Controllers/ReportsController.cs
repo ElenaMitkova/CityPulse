@@ -41,9 +41,9 @@ namespace CityPulse.Controllers
                 };
                 context.Reports.Add(report);
                 context.SaveChanges();
-                return Ok("fuh");
+                return Ok("ok");
             }
-            return Ok("hfuvhv");
+            return Ok("not ok");
         }
     }
 }
