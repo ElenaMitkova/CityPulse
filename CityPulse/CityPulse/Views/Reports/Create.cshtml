@@ -35,36 +35,8 @@
                         <a asp-action="Index" class="btn btn-outline-secondary btn-lg rounded-pill px-4 flex-grow-1">Cancel</a>
                         <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 flex-grow-1 shadow">Submit</button>
                     </div>
-                    <div class="mb-5">
-                        <label class="form-label fw-bold text-dark">Location</label>
-                        <input type="hidden" asp-for="Latitude" id="lat" />
-                        <input type="hidden" asp-for="Longtitude" id="lng" />
-                        <div id="map" style="height: 350px; border-radius: 20px;" class="border shadow-sm"></div>
-                        <small class="text-muted"><i class="bi bi-info-circle me-1"></i>Choose the right location</small>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var map = L.map('map').setView([42.6977, 23.3219], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-            var marker;
-            map.on('click', function (e) {
-                if (marker) marker.setLatLng(e.latlng);
-                else marker = L.marker(e.latlng).addTo(map);
-                
-                document.getElementById('lat').value = e.latlng.lat;
-                document.getElementById('lng').value = e.latlng.lng;
-            });
-        });
-    </script>
-}
