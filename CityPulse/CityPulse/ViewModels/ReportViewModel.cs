@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CityPulse.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static CityPulse.Common.EntityValidations.Report;
-using static CityPulse.Common.EntityValidations;
-using CityPulse.Models.Enums;
-using Newtonsoft.Json;
 
-namespace CityPulse.Models
+namespace CityPulse.ViewModels
 {
-    public class Report
+    public class ReportViewModel
     {
         [Key]
         public int Id { get; set; }
@@ -18,15 +16,6 @@ namespace CityPulse.Models
 
         [Required]
         public string Description { get; set; } = null!;
-
-        [Column(TypeName = DateTimeColumnType)]
-        public DateTime CreatedAt { get; set; }
-
-        [Column(TypeName = DateTimeColumnType)]
-        public DateTime ModifiedOn { get; set; }
-
-        [Required]
-        public ReportStatus Status { get; set; }
 
         [Required]
         [ForeignKey(nameof(Category))]

@@ -1,6 +1,20 @@
-﻿@model Report
+﻿@model ReportViewModel
 @{
     ViewData["Title"] = "Report";
+
+    IEnumerable<Category> selected = ViewData["Categories"] as List<Category> ?? new List<Category>();
+    IEnumerable<SelectListItem> categories = selected.Select(x => new SelectListItem()
+    {
+        Text = x.Name,
+        Value = x.Id.ToString()
+    });
+
+    IEnumerable<District> selectedD = ViewData["Districts"] as List<District> ?? new List<District>();
+    IEnumerable<SelectListItem> districts = selectedD.Select(x => new SelectListItem()
+    {
+        Text = x.Name,
+        Value = x.Id.ToString()
+    });
 }
 
 <div class="container py-5">
@@ -21,7 +35,13 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label asp-for="CategoryId" class="form-label fw-bold text-dark">Category</label>
-                            <select asp-for="CategoryId" class="form-select glass-input py-3" asp-items="ViewBag.CategoryId">
+                            <select asp-for="CategoryId" class="form-select glass-input py-3" asp-items="categories">
+                                <option value="">-- Choose --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="DistrictId" class="form-label fw-bold text-dark">Category</label>
+                            <select asp-for="DistrictId" class="form-select glass-input py-3" asp-items="districts">
                                 <option value="">-- Choose --</option>
                             </select>
                         </div>
