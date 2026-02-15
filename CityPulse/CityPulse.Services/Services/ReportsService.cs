@@ -41,7 +41,6 @@ namespace CityPulse.Services.Services
             IQueryable<ReportModel> reportModels = context.Reports
                         .Include(x => x.Category)
                         .Include(x => x.District)
-                            .ThenInclude(x => x.City)
                         .Select(x => new ReportModel
                         {
                             Id = x.Id,
@@ -49,7 +48,9 @@ namespace CityPulse.Services.Services
                             Description = x.Description,
                             Status = x.Status,
                             CategoryId = x.CategoryId,
-                            DistrictId = x.DistrictId
+                            DistrictId = x.DistrictId,
+                            District = context.Districts.Include(c => c.City)
+                                                        .Where(d => d.Id == x.DistrictId).Single(),
                         });
             return await reportModels.ToListAsync();
         }
