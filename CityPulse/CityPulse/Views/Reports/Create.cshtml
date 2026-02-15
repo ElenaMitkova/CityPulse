@@ -1,4 +1,4 @@
-﻿@* @model ReportViewModel
+﻿@model ReportModel
 @{
     ViewData["Title"] = "Report";
 
@@ -9,12 +9,7 @@
         Value = x.Id.ToString()
     });
 
-    IEnumerable<District> selectedD = ViewData["Districts"] as List<District> ?? new List<District>();
-    IEnumerable<SelectListItem> districts = selectedD.Select(x => new SelectListItem()
-    {
-        Text = x.Name,
-        Value = x.Id.ToString()
-    });
+    IEnumerable<GroupedDistricts> districts = ViewData["Districts"] as List<GroupedDistricts> ?? new List<GroupedDistricts>();
 }
 
 <div class="container py-5">
@@ -40,9 +35,18 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label asp-for="DistrictId" class="form-label fw-bold text-dark">Category</label>
-                            <select asp-for="DistrictId" class="form-select glass-input py-3" asp-items="districts">
-                                <option value="">-- Choose --</option>
+                            <label asp-for="DistrictId" class="form-label fw-bold text-dark">District</label>
+                            <select asp-for="DistrictId" class="form-select glass-input py-3">
+                                <option value="">-- Choose a district --</option>
+                                @foreach (var group in districts)
+                                {
+                                    <optgroup label="@group.City">
+                                        @foreach (var district in group.Districts)
+                                        {
+                                            <option value="@district.Id">@district.Name</option>
+                                        }
+                                    </optgroup>
+                                }
                             </select>
                         </div>
                     </div>
@@ -59,4 +63,4 @@
             </div>
         </div>
     </div>
-</div> *@
+</div>

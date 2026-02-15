@@ -1,6 +1,7 @@
 ﻿using CityPulse.Data;
 using CityPulse.Models;
 using CityPulse.Services.Common;
+using CityPulse.Services.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,16 @@ namespace CityPulse.Services.Services
         public async Task<List<District>> GetAllDistricts()
         {
             IQueryable<District> districts = context.Districts.Include(x => x.City);
+            return await districts.ToListAsync();
+        }
+        public async Task<List<GroupedDistricts>> GetAllDistrictsByGroup()
+        {
+            IQueryable<GroupedDistricts> districts = context.Cities.Include(x => x.Districts)
+                                                    .Select(x => new GroupedDistricts
+                                                    {
+                                                        City = x.Name,
+                                                        Districts = x.Districts.ToList()
+                                                    });
             return await districts.ToListAsync();
         }
     }

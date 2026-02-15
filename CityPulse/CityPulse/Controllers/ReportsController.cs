@@ -9,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CityPulse.Controllers
 {
-    public class ReportsController(IReportsService reportsService, ICategoriesService categoriesService) 
+    public class ReportsController(IReportsService reportsService, ICategoriesService categoriesService,
+                                    IDistrictsService districtsService, ICitiesService citiesService) 
         : Controller
     {
         public async Task<IActionResult> Index(int? categoryId)
@@ -29,15 +30,14 @@ namespace CityPulse.Controllers
             ReportModel model = await reportsService.GetReportById(id);
             return View(model);
         }
-        //[HttpGet]
-        //public IActionResult Create()
-        //{
-        //    IEnumerable<Category> categories = context.Categories.AsNoTracking().ToList();
-        //    IEnumerable<District> districts = context.Districts.AsNoTracking().ToList();
-        //    ViewData["Categories"] = categories;
-        //    ViewData["Districts"] = districts;
-        //    return View(new ReportViewModel());
-        //}
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            ViewData["Categories"] = await categoriesService.GetAllCategories();
+            ViewData["Districts"] = await districtsService.GetAllDistrictsByGroup();
+            return View(new ReportModel());
+        }
 
         //[HttpPost]
         //public IActionResult Create(ReportViewModel model)
