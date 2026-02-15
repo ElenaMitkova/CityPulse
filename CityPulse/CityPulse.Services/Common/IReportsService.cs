@@ -11,7 +11,7 @@ namespace CityPulse.Services.Common
     {
         Task<List<ReportModel>> GetAllReports();
         Task<ReportModel> GetReportById(int reportId);
-        Task CreateReport(ReportModel model);
+        Task CreateReport(ReportModel model, string userId);
         Task UpdateReport(ReportModel model);
         Task DeleteReport(ReportModel model);
     }

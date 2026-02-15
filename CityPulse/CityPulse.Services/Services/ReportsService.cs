@@ -3,6 +3,7 @@ using CityPulse.Models;
 using CityPulse.Models.Enums;
 using CityPulse.Services.Common;
 using CityPulse.Services.Models;
+using static System.Security.Claims.ClaimsPrincipal;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,14 @@ namespace CityPulse.Services.Services
 {
     public class ReportsService(ApplicationDbContext context) : IReportsService
     {
-        public async Task CreateReport(ReportModel model)
+        public async Task CreateReport(ReportModel model, string userId)
         {
             Report report = new Report
             {
                 Title = model.Title,
                 Description = model.Description,
                 CreatedAt = DateTime.Now,
+                UserId = userId,
                 Status = ReportStatus.Pending,
                 CategoryId = model.CategoryId,
                 DistrictId = model.DistrictId
