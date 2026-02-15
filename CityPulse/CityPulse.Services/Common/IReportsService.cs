@@ -10,6 +10,7 @@ namespace CityPulse.Services.Common
     public interface IReportsService
     {
         Task<List<ReportModel>> GetAllReports();
+        Task<ReportModel> GetReportById(int reportId);
         Task CreateReport(ReportModel model);
         Task UpdateReport(ReportModel model);
         Task DeleteReport(ReportModel model);

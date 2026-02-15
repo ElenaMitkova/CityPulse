@@ -23,6 +23,12 @@ namespace CityPulse.Controllers
             ViewData["SelectedCategoryId"] = categoryId;
             return View(models);
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            ReportModel model = await reportsService.GetReportById(id);
+            return View(model);
+        }
         //[HttpGet]
         //public IActionResult Create()
         //{

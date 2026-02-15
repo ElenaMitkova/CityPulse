@@ -50,9 +50,29 @@ namespace CityPulse.Services.Services
                             CategoryId = x.CategoryId,
                             DistrictId = x.DistrictId,
                             District = context.Districts.Include(c => c.City)
-                                                        .Where(d => d.Id == x.DistrictId).Single(),
+                                                        .Where(d => d.Id == x.DistrictId).Single()
                         });
             return await reportModels.ToListAsync();
+        }
+
+        public async Task<ReportModel> GetReportById(int reportId)
+        {
+            ReportModel reportModel = await context.Reports
+                        .Include(x => x.Category)
+                        .Include(x => x.District)
+                        .Select(x => new ReportModel
+                        {
+                            Id = x.Id,
+                            Title = x.Title,
+                            Description = x.Description,
+                            Status = x.Status,
+                            CategoryId = x.CategoryId,
+                            CreatedOn = x.CreatedAt,
+                            DistrictId = x.DistrictId,
+                            District = context.Districts.Include(c => c.City)
+                                                        .Where(d => d.Id == x.DistrictId).Single()
+                        }).FirstAsync(x => x.Id == reportId);
+            return reportModel;
         }
 
         public async Task UpdateReport(ReportModel model)
