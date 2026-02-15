@@ -1,4 +1,5 @@
 ﻿using CityPulse.Models;
+using CityPulse.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace CityPulse.Services.Common
     public interface IDistrictsService
     {
         Task<List<District>> GetAllDistricts();
+        Task<List<GroupedDistricts>> GetAllDistrictsByGroup();
     }
 }

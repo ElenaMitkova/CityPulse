@@ -68,6 +68,7 @@ namespace CityPulse.Services.Services
                             Title = x.Title,
                             Description = x.Description,
                             Status = x.Status,
+                            UserId = x.UserId,
                             CategoryId = x.CategoryId,
                             CreatedOn = x.CreatedAt,
                             DistrictId = x.DistrictId,
@@ -77,12 +78,34 @@ namespace CityPulse.Services.Services
             return reportModel;
         }
 
+        public async Task<List<ReportModel>> GetReportsByUser(string user)
+        {
+            IQueryable<ReportModel> reportModels = context.Reports
+                        .Include(x => x.Category)
+                        .Include(x => x.District)
+                        .Where(x => x.UserId == user)
+                        .Select(x => new ReportModel
+                        {
+                            Id = x.Id,
+                            Title = x.Title,
+                            Description = x.Description,
+                            Status = x.Status,
+                            CategoryId = x.CategoryId,
+                            DistrictId = x.DistrictId,
+                            District = context.Districts.Include(c => c.City)
+                                                        .Where(d => d.Id == x.DistrictId).Single()
+                        });
+            return await reportModels.ToListAsync();
+        }
+
         public async Task UpdateReport(ReportModel model)
         {
             Report report = context.Reports.Single(x => x.Id == model.Id);
             report.Title = model.Title;
             report.Description = report.Description;
-            report.Status = report.Status;
+            report.Status = model.Status;
+            report.DistrictId = model.DistrictId;
+            await context.SaveChangesAsync();
         }
     }
 }

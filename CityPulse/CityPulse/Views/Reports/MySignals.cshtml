@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ReportModel>
 @{
-    ViewData["Title"] = "All Reports";
+    ViewData["Title"] = "My Signals";
     IEnumerable<Category> selected = ViewData["Categories"] as List<Category> ?? new List<Category>();
     IEnumerable<SelectListItem> categories = selected.Select(x => new SelectListItem()
     {

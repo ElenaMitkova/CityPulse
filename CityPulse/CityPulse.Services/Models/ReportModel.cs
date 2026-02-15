@@ -18,7 +18,7 @@ namespace CityPulse.Services.Models
 
         public ReportStatus Status { get; set; }
         public DateTime CreatedOn { get; set; }
-        public string UserId { get; set; } = null!;
+        public string? UserId { get; set; } = null!;
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
