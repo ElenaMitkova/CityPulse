@@ -38,23 +38,6 @@ namespace CityPulse.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(254)", maxLength: 254, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    JoinedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastLogIn = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Districts",
                 columns: table => new
                 {
@@ -82,13 +65,9 @@ namespace CityPulse.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Latitude = table.Column<double>(type: "float", nullable: false),
-                    Longtitude = table.Column<double>(type: "float", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    AuthorId = table.Column<int>(type: "int", nullable: true),
-                    ModifierId = table.Column<int>(type: "int", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     DistrictId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -107,16 +86,6 @@ namespace CityPulse.Data.Migrations
                         principalTable: "Districts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Reports_Users_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Reports_Users_ModifierId",
-                        column: x => x.ModifierId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -125,7 +94,6 @@ namespace CityPulse.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AuthorId = table.Column<int>(type: "int", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     datetime2 = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReportId = table.Column<int>(type: "int", nullable: false)
@@ -139,18 +107,7 @@ namespace CityPulse.Data.Migrations
                         principalTable: "Reports",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Comments_Users_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_AuthorId",
-                table: "Comments",
-                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ReportId",
@@ -163,11 +120,6 @@ namespace CityPulse.Data.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reports_AuthorId",
-                table: "Reports",
-                column: "AuthorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reports_CategoryId",
                 table: "Reports",
                 column: "CategoryId");
@@ -176,11 +128,6 @@ namespace CityPulse.Data.Migrations
                 name: "IX_Reports_DistrictId",
                 table: "Reports",
                 column: "DistrictId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reports_ModifierId",
-                table: "Reports",
-                column: "ModifierId");
         }
 
         /// <inheritdoc />
@@ -197,9 +144,6 @@ namespace CityPulse.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Districts");
-
-            migrationBuilder.DropTable(
-                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Cities");
