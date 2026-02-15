@@ -13,10 +13,10 @@ namespace CityPulse.Models
         [MaxLength()]
         public string Name { get; set; } = null!;
 
-        [Required]
+
         [ForeignKey(nameof(City))]
         public int CityId { get; set; }
 
-        public City City { get; set; } = null!;
+        public City? City { get; set; }
     }
 }

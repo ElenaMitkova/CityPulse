@@ -12,5 +12,8 @@ namespace CityPulse.Services.Common
     {
         Task<List<District>> GetAllDistricts();
         Task<List<GroupedDistricts>> GetAllDistrictsByGroup();
+        Task<List<District>> GetAllDistrictsByCity(int cityId);
+        Task CreateDistrict(District model, int id);
+        Task DeleteDistrict(int id);
     }
 }

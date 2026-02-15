@@ -1,0 +1,42 @@
+﻿@model CityPulse.Models.City
+
+@{
+    ViewData["Title"] = "Add New City";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="glass-panel-light p-4 rounded-4 shadow-sm border-0">
+                
+                <div class="text-center mb-4">
+                    <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-building-add text-primary h3 mb-0"></i>
+                    </div>
+                    <h3 class="fw-bold">Add New City</h3>
+                    <p class="text-muted small">This will create a new group for districts</p>
+                </div>
+
+                <form asp-action="AddCity" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                    <div class="mb-4">
+                        <label asp-for="Name" class="form-label fw-bold small">City Name</label>
+                        <input asp-for="Name" class="form-control glass-input py-2"
+                               placeholder="e.g. Plovdiv, Varna..." autofocus />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary rounded-pill py-2 fw-bold">
+                            Save City
+                        </button>
+                        <a asp-action="Index" class="btn btn-light rounded-pill py-2 small">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
