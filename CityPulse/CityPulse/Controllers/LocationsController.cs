@@ -44,5 +44,36 @@ namespace CityPulse.Controllers
             await citiesService.DeleteCity(id);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AddDistrict(int id)
+        {
+            District district = new District
+            {
+                CityId = id,
+                City = await citiesService.GetCityById(id)
+            };
+            TempData["SelectedCityId"] = id;
+            return View(district);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddDistrict(District model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                await districtsService.CreateDistrict(model, id);
+                TempData["SelectedCityId"] = id;
+                return RedirectToAction(nameof(Index), new {selectedCityId = id});
+            }
+            TempData["SelectedCityId"] = id;
+            return View(model);
+        }
+
+        public async Task<IActionResult> DeleteDistrict(int id, int selectedCityId)
+        {
+            await districtsService.DeleteDistrict(id);
+            return RedirectToAction(nameof(Index), new { selectedCityId });
+        }
     }
 }

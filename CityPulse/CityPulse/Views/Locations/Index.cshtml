@@ -35,7 +35,7 @@
                     var selectedCity = Model.Cities.First(c => c.Id == (int)ViewData["SelectedCityId"]);
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h5 class="fw-bold mb-0">Districts in @selectedCity.Name</h5>
-                        <a asp-controller="Districts" asp-action="Create" asp-route-cityId="@selectedCity.Id"
+                        <a asp-controller="Locations" asp-action="AddDistrict" asp-route-id="@selectedCity.Id"
                            class="btn btn-sm btn-outline-primary rounded-pill px-3">+ New District</a>
                     </div>
 
@@ -53,7 +53,7 @@
                                     <tr>
                                         <td class="fw-bold">@d.Name</td>
                                         <td class="text-end">
-                                            <a asp-controller="Districts" asp-action="Delete" asp-route-id="@d.Id" class="btn btn-sm btn-outline-primary rounded-pill">Delete</a>
+                                            <a asp-controller="Locations" asp-action="DeleteDistrict" asp-route-id="@d.Id" asp-route-selectedCityId="@d.CityId" class="btn btn-sm btn-outline-primary rounded-pill">Delete</a>
                                         </td>
                                     </tr>
                                 }

@@ -32,5 +32,11 @@ namespace CityPulse.Services.Services
             context.Cities.Remove(city);
             await context.SaveChangesAsync();
         }
+
+        public Task<City> GetCityById(int id)
+        {
+            IQueryable<City> city = context.Cities;
+            return city.SingleAsync(x => x.Id == id);
+        }
     }
 }

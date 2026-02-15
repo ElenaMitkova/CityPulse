@@ -1,5 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model District
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="glass-panel-light p-4 rounded-4 shadow-sm border-0">
+                
+                <div class="text-center mb-4">
+                    <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-geo-fill text-primary h3 mb-0"></i>
+                    </div>
+                    <h3 class="fw-bold">Add New District</h3>
+                    <p class="text-muted small">Expand the urban reach of your city</p>
+                </div>
+
+                <form asp-action="AddDistrict">
+                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                    <div class="mb-4">
+                        <label asp-for="Name" class="form-label fw-bold small">District Name</label>
+                        <input asp-for="Name" class="form-control glass-input py-2"
+                               placeholder="e.g. Studentski grad, Lozenets..." autofocus />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+                    <input type="hidden" asp-for="CityId" />
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary rounded-pill py-2 fw-bold">
+                            Save
+                        </button>
+                        <a asp-controller="Locations" asp-action="Index" class="btn btn-light rounded-pill py-2 small">
+                            Back
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -34,5 +34,21 @@ namespace CityPulse.Services.Services
             IQueryable<District> districts = context.Districts.Where(x => x.CityId == cityId);
             return await districts.ToListAsync();
         }
+
+        public async Task CreateDistrict(District model, int id)
+        {
+            District district = new District();
+            district.Name = model.Name;
+            district.CityId = id;
+            await context.Districts.AddAsync(district);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteDistrict(int districtId)
+        {
+            District district = context.Districts.Single(x => x.Id == districtId);
+            context.Districts.Remove(district);
+            await context.SaveChangesAsync();
+        }
     }
 }
