@@ -6,19 +6,23 @@
             <div class="glass-panel-light p-4 rounded-4 shadow-sm mb-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="fw-bold mb-0">Cities</h5>
-                    <a asp-action="Create" class="btn btn-sm btn-primary-gradient rounded-pill px-3">+ City</a>
+                    <a asp-action="AddCity" class="btn btn-sm btn-primary-gradient rounded-pill px-3">+ City</a>
                 </div>
                 
                 <div class="list-group list-group-flush">
                     @foreach (var city in Model.Cities)
                     {
-                        <a asp-action="Index" asp-route-selectedCityId="@city.Id"
-                               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border-0 rounded-3 mb-1 @(ViewData["SelectedCityId"]?.ToString() == city.Id.ToString() ? "bg-primary text-white" : "")">
-                            <span>@city.Name</span>
-                            <span class="badge rounded-pill @(ViewData["SelectedCityId"]?.ToString() == city.Id.ToString() ? "bg-white text-primary" : "bg-light text-muted")">
-                                @city.Districts.Count()
-                            </span>
-                        </a>
+                        <div class="d-flex align-items-center mb-1">
+                            <a asp-action="Index" asp-route-selectedCityId="@city.Id"
+                                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border-0 rounded-3 flex-grow-1 me-2 @(ViewData["SelectedCityId"]?.ToString() == city.Id.ToString() ? "bg-primary text-white" : "")">
+        
+                                <span>@city.Name</span>
+                            </a>
+
+                            <a asp-action="Delete" asp-route-id="@city.Id" class="btn btn-sm btn-outline-danger rounded-pill px-3">
+                                Delete
+                            </a>
+                        </div>
                     }
                 </div>
             </div>
@@ -49,7 +53,7 @@
                                     <tr>
                                         <td class="fw-bold">@d.Name</td>
                                         <td class="text-end">
-                                            <a asp-controller="Districts" asp-action="Delete" asp-route-id="@d.Id" class="btn btn-sm btn-primary rounded-circle shadow-sm text-danger">Delete</a>
+                                            <a asp-controller="Districts" asp-action="Delete" asp-route-id="@d.Id" class="btn btn-sm btn-outline-primary rounded-pill">Delete</a>
                                         </td>
                                     </tr>
                                 }

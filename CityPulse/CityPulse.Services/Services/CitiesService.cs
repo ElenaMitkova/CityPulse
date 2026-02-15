@@ -17,5 +17,20 @@ namespace CityPulse.Services.Services
             IQueryable<City> cities = context.Cities;
             return await cities.ToListAsync();
         }
+
+        public async Task CreateCity(City model)
+        {
+            City city = new City();
+            city.Name = model.Name;
+            await context.Cities.AddAsync(city);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteCity(int id)
+        {
+            City city = context.Cities.Single(x => x.Id == id);
+            context.Cities.Remove(city);
+            await context.SaveChangesAsync();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CityPulse.Services.Common;
+﻿using CityPulse.Models;
+using CityPulse.Services.Common;
 using CityPulse.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,29 @@ namespace CityPulse.Controllers
                 ViewData["SelectedCityId"] = selectedCityId;
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AddCity()
+        {
+            return View(new City());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCity(City model)
+        {
+            if (ModelState.IsValid)
+            {
+                await citiesService.CreateCity(model);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await citiesService.DeleteCity(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

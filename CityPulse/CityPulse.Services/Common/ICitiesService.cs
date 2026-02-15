@@ -10,5 +10,7 @@ namespace CityPulse.Services.Common
     public interface ICitiesService
     {
         Task<List<City>> GetAllCities();
+        Task CreateCity(City model);
+        Task DeleteCity(int id);
     }
 }
