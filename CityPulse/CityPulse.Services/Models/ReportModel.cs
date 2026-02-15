@@ -1,29 +1,30 @@
 ﻿using CityPulse.Models;
+using CityPulse.Models.Enums;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static CityPulse.Common.EntityValidations.Report;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CityPulse.ViewModels
+namespace CityPulse.Services.Models
 {
-    public class ReportViewModel
+    public class ReportModel
     {
-        [Key]
         public int Id { get; set; }
-
-        [Required]
-        [MaxLength(ReportTitleMaxLength)]
         public string Title { get; set; } = null!;
-
-        [Required]
         public string Description { get; set; } = null!;
 
-        [Required]
+        public ReportStatus Status { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string UserId { get; set; } = null!;
+
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
 
         public Category? Category { get; set; }
 
-        [Required]
         [ForeignKey(nameof(District))]
         public int DistrictId { get; set; }
 
