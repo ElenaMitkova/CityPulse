@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using static CityPulse.Common.EntityValidations.Report;
 using static CityPulse.Common.EntityValidations;
 using CityPulse.Models.Enums;
-using Newtonsoft.Json;
 
 namespace CityPulse.Models
 {

@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="CityPulse.Data/CityPulse.Data.csproj" Id="7c65249d-a4a2-429e-871b-a782eeda5d6f" />
+  <Project Path="CityPulse.Services/CityPulse.Services.csproj" Id="d731f7c4-aa72-4013-b13b-4e20cf5772ee" />
   <Project Path="CityPulse/CityPulse.csproj" />
 </Solution>
