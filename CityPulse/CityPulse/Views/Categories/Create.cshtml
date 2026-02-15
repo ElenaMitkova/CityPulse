@@ -1,0 +1,65 @@
+﻿@model CityPulse.Models.Category
+
+@{
+    ViewData["Title"] = "NewCategory";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="glass-panel-light p-4 rounded-4 shadow-sm border-0">
+                
+                <div class="text-center mb-4">
+                    <div class="create-icon-circle mb-3 mx-auto">
+                        <i class="bi bi-plus-lg text-success h3"></i>
+                    </div>
+                    <h3 class="fw-bold">Create Category</h3>
+                    <p class="text-muted small">Add a new type of urban issue</p>
+                </div>
+
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                    <div class="mb-4">
+                        <label asp-for="Name" class="form-label fw-bold small">Name</label>
+                        <input asp-for="Name" class="form-control glass-input py-2"
+                               placeholder="e.g. Street Lighting" autofocus />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary rounded-pill py-2 fw-bold">
+                            Create Category
+                        </button>
+                        <a asp-action="Index" class="btn btn-light rounded-pill py-2 small">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .create-icon-circle {
+        width: 60px;
+        height: 60px;
+        background: rgba(25, 135, 84, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .btn-success-gradient {
+        background: linear-gradient(90deg, #198754, #20c997);
+        color: white;
+        border: none;
+    }
+
+        .btn-success-gradient:hover {
+            opacity: 0.9;
+            color: white;
+        }
+</style>

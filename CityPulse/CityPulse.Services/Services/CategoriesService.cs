@@ -14,8 +14,23 @@ namespace CityPulse.Services.Services
     {
         public async Task<List<Category>> GetAllCategories()
         {
-            IQueryable<Category> categories = context.Categories;
+            IQueryable<Category> categories = context.Categories.Include(x => x.Reports);
             return await categories.ToListAsync();
         }
+        public async Task CreateCategory(Category model)
+        {
+            Category category = new Category();
+            category.Name = model.Name;
+            await context.Categories.AddAsync(category);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteCategory(int id)
+        {
+            Category category = context.Categories.Single(x => x.Id == id);
+            context.Categories.Remove(category);
+            await context.SaveChangesAsync();
+        }
+
     }
 }

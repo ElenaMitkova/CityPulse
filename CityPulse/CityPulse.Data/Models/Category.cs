@@ -11,5 +11,7 @@ namespace CityPulse.Models
         [Required]
         [MaxLength(CategoryNameMaxLength)]
         public string Name { get; set; } = null!;
+
+        public IEnumerable<Report> Reports { get; set; } = new HashSet<Report>();
     }
 }
