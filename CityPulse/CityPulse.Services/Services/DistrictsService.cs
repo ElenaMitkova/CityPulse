@@ -28,5 +28,11 @@ namespace CityPulse.Services.Services
                                                     });
             return await districts.ToListAsync();
         }
+
+        public async Task<List<District>> GetAllDistrictsByCity(int cityId)
+        {
+            IQueryable<District> districts = context.Districts.Where(x => x.CityId == cityId);
+            return await districts.ToListAsync();
+        }
     }
 }
