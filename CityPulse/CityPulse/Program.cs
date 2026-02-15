@@ -19,6 +19,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IReportsService, ReportsService>();
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<IDistrictsService, DistrictsService>();
+builder.Services.AddScoped<ICitiesService, CitiesService>();
 
 var app = builder.Build();
 
