@@ -40,6 +40,7 @@
                         </optgroup>
                     }
                 </select>
+                <span asp-validation-for="DistrictId" class="text-danger small"></span>
             </div>
 
             <div class="mb-3">
@@ -50,6 +51,7 @@
             <div class="mb-4">
                 <label asp-for="Description" class="form-label fw-bold">Description</label>
                 <textarea asp-for="Description" class="form-control glass-input" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger small"></span>
             </div>
 
             <div class="d-flex gap-2">

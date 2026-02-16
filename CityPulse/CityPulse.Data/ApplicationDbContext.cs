@@ -14,7 +14,6 @@ namespace CityPulse.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<City> Cities { get; set; }
-        public DbSet<Comment> Comments { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Report> Reports { get; set; }
 
