@@ -32,6 +32,7 @@
                             <select asp-for="CategoryId" class="form-select glass-input py-3" asp-items="categories">
                                 <option value="">-- Choose --</option>
                             </select>
+                            <span asp-validation-for="CategoryId" class="text-danger small"></span>
                         </div>
                         <div class="col-md-6">
                             <label asp-for="DistrictId" class="form-label fw-bold text-dark">District</label>
@@ -47,6 +48,7 @@
                                     </optgroup>
                                 }
                             </select>
+                            <span asp-validation-for="DistrictId" class="text-danger small"></span>
                         </div>
                     </div>
                     <div class="mb-4">
