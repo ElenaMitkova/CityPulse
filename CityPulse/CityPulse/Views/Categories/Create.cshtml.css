@@ -40,3 +40,26 @@
         </div>
     </div>
 </div>
+
+<style>
+    .create-icon-circle {
+        width: 60px;
+        height: 60px;
+        background: rgba(25, 135, 84, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .btn-success-gradient {
+        background: linear-gradient(90deg, #198754, #20c997);
+        color: white;
+        border: none;
+    }
+
+        .btn-success-gradient:hover {
+            opacity: 0.9;
+            color: white;
+        }
+</style>

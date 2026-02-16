@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CityPulse.Models.Category>
+﻿@model IEnumerable<Category>
 
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -39,7 +39,7 @@
                         </td>
                         <td class="pe-4 py-3 text-end">
                             <div class="btn-group shadow-sm rounded-pill">
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary rounded-pill px-3 ms-lg-2 shadow-sm" title="Delete">
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger rounded-pill px-3" title="Delete">
                                     Delete
                                 </a>
                             </div>
@@ -50,3 +50,22 @@
         </table>
     </div>
 </div>
+
+<style>
+    .category-icon-box {
+        width: 35px;
+        height: 35px;
+        background: rgba(13, 110, 253, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+    }
+    .btn-white {
+        background: #fff;
+        border: none;
+    }
+    .btn-white:hover {
+        background: #f8f9fa;
+    }
+</style>
