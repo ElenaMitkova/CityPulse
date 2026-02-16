@@ -1,15 +1,16 @@
-﻿using CityPulse.Data;
+﻿using CityPulse.Areas.Identity.Pages.Account;
+using CityPulse.Data;
 using CityPulse.Models;
 using CityPulse.Models.Enums;
 using CityPulse.Services.Common;
 using CityPulse.Services.Models;
 using CityPulse.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using System.Security.Claims;
 using static CityPulse.Common.EntityValidations;
-using CityPulse.Areas.Identity.Pages.Account;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 namespace CityPulse.Controllers
 {
     public class ReportsController(IReportsService reportsService, ICategoriesService categoriesService,

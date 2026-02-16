@@ -8,7 +8,7 @@ namespace CityPulse.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please, enter city name!")]
         [MaxLength(CityNameMaxLength)]
         public string Name { get; set; } = null!;
 

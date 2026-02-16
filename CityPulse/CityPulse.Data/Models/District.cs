@@ -9,7 +9,7 @@ namespace CityPulse.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please, enter district name!")]
         [MaxLength()]
         public string Name { get; set; } = null!;
 

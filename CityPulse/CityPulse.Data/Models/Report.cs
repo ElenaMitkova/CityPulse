@@ -12,11 +12,11 @@ namespace CityPulse.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please, enter report title")]
         [MaxLength(ReportTitleMaxLength)]
         public string Title { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = "This field is required!")]
         public string Description { get; set; } = null!;
 
         [Column(TypeName = DateTimeColumnType)]
@@ -25,13 +25,13 @@ namespace CityPulse.Models
         [Required]
         public ReportStatus Status { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required!")]
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
 
         public Category? Category { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required!")]
         [ForeignKey(nameof(District))]
         public int DistrictId { get; set; }
 
