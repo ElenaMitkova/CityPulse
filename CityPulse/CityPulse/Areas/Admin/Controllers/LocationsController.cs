@@ -3,10 +3,10 @@ using CityPulse.Services.Common;
 using CityPulse.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CityPulse.Controllers
+namespace CityPulse.Areas.Admin.Controllers
 {
     public class LocationsController(ICitiesService citiesService, IDistrictsService districtsService)
-        : Controller
+        : AdminController
     {
         public async Task<IActionResult> Index(int selectedCityId)
         {
