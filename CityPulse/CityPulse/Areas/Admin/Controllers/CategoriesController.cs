@@ -2,9 +2,9 @@
 using CityPulse.Services.Common;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CityPulse.Controllers
+namespace CityPulse.Areas.Admin.Controllers
 {
-    public class CategoriesController(ICategoriesService categoriesService) : Controller
+    public class CategoriesController(ICategoriesService categoriesService) : AdminController
     {
         public async Task<IActionResult> Index()
         {
