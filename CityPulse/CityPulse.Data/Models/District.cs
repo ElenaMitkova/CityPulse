@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static CityPulse.Common.EntityValidations.District;
 
 namespace CityPulse.Models
 {

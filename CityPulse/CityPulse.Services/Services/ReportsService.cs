@@ -3,13 +3,7 @@ using CityPulse.Models;
 using CityPulse.Models.Enums;
 using CityPulse.Services.Common;
 using CityPulse.Services.Models;
-using static System.Security.Claims.ClaimsPrincipal;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CityPulse.Services.Services
 {
