@@ -1,4 +1,5 @@
-﻿using CityPulse.Models;
+﻿using CityPulse.Data.Models;
+using CityPulse.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ namespace CityPulse.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Report> Reports { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
