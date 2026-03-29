@@ -27,10 +27,10 @@ namespace CityPulse.Data.Models
 
         public IdentityUser User { get; set; } = null!;
 
-        public int ReportId { get; set; }
-
         [Required]
         [ForeignKey(nameof(Report))]
+        public int ReportId { get; set; }
+        
         public Report Report { get; set; } = null!;
     }
 }
