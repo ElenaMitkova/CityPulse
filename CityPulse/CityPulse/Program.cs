@@ -38,6 +38,14 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error/500");
+    app.UseHsts();
+}
+
+app.UseStatusCodePagesWithReExecute("/Home/Error/{0}");
+
 app.UseRouting();
 
 app.UseAuthorization();
