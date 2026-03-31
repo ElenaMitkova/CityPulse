@@ -80,3 +80,29 @@
         }
     </div>
 </div>
+@if (ViewData["TotalReportsCount"] != null && (int)ViewData["TotalReportsCount"] > 6)
+{
+    <nav aria-label="Page navigation" class="mt-5">
+        <ul class="pagination justify-content-center border-0">
+            @{
+                int totalCount = (int)ViewData["TotalReportsCount"];
+                int reportsPerPage = 6;
+                int totalPages = (int)Math.Ceiling((double)totalCount / reportsPerPage);
+                int currentPage = string.IsNullOrEmpty(Context.Request.Query["currentPage"]) ? 1 : int.Parse(Context.Request.Query["currentPage"]);
+            }
+
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "") mx-1">
+                    <a class="page-link border-0 shadow-sm rounded-3 @(i == currentPage ? "bg-primary text-white" : "glass-panel-light text-dark")"
+                           asp-action="Index"
+                           asp-route-currentPage="@i"
+                           asp-route-searchTerm="@Context.Request.Query["searchTerm"]"
+                           asp-route-categoryId="@ViewData["SelectedCategoryId"]">
+                        @i
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
