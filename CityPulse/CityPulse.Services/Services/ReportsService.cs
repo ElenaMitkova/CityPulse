@@ -32,23 +32,37 @@ namespace CityPulse.Services.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<List<ReportModel>> GetAllReports()
+        public async Task<ReportServiceModel> GetAllReports(string? searchTerm = null, int currentPage = 1,
+            int reportsPerPage = 6)
         {
-            IQueryable<ReportModel> reportModels = context.Reports
-                        .Include(x => x.Category)
-                        .Include(x => x.District)
-                        .Select(x => new ReportModel
-                        {
-                            Id = x.Id,
-                            Title = x.Title,
-                            Description = x.Description,
-                            Status = x.Status,
-                            CategoryId = x.CategoryId,
-                            DistrictId = x.DistrictId,
-                            District = context.Districts.Include(c => c.City)
-                                                        .Where(d => d.Id == x.DistrictId).Single()
-                        });
-            return await reportModels.ToListAsync();
+            IQueryable<Report> reports = context.Reports.AsNoTracking();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                searchTerm = searchTerm.ToLower();
+                reports = reports.Where(x => (x.Title.ToLower().Contains(searchTerm) ||
+                                                x.Description.ToLower().Contains(searchTerm)));
+            }
+
+            int count = await reports.CountAsync();
+
+            List<ReportModel> models = await reports.OrderByDescending(r => r.CreatedAt)
+                                        .Skip((currentPage - 1) * reportsPerPage).Take(reportsPerPage)
+                                        .Select(r => new ReportModel
+                                        {
+                                            Id = r.Id,
+                                            Title = r.Title,
+                                            Description = r.Description,
+                                            Status = r.Status,
+                                            CategoryId = r.CategoryId,
+                                            DistrictId = r.DistrictId,
+                                        }).ToListAsync();
+            var returnModel = new ReportServiceModel
+            {
+                TotalReportsCount = count,
+                Reports = models
+            };
+            return returnModel;
         }
 
         public async Task<ReportModel> GetReportById(int reportId)
