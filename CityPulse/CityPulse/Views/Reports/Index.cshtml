@@ -15,6 +15,19 @@
     <div class="glass-panel-light p-3 mb-5 rounded-4 shadow-sm">
         <form asp-action="Index" method="get" class="row align-items-center">
             <div class="col-md-4">
+                <label class="small fw-bold text-muted mb-1">Search Reports</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-0 pe-0">
+                        <i class="bi bi-search text-muted"></i>
+                    </span>
+                    <input type="text"
+                           name="searchTerm"
+                           value="@Context.Request.Query["searchTerm"]"
+                           class="form-select border-0 shadow-none ps-2"
+                           placeholder="Search by title or description..." />
+                    <button type="submit" class="btn btn-primary btn-sm rounded-pill ms-2 px-3">Search</button>
+                </div>
+            </div>            <div class="col-md-4">
                 <label class="small fw-bold text-muted mb-1">Filter by Category</label>
                 <select name="categoryId" class="form-select border-0 shadow-none" onchange="this.form.submit()">
                     <option value="">All Categories</option>
