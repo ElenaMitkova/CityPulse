@@ -32,6 +32,25 @@ namespace CityPulse.Services.Services
             await context.SaveChangesAsync();
         }
 
+        public async Task<List<ReportModel>> GetAll()
+        {
+            IQueryable<ReportModel> reportModels = context.Reports
+                        .Include(x => x.Category)
+                        .Include(x => x.District)
+                        .Select(x => new ReportModel
+                        {
+                            Id = x.Id,
+                            Title = x.Title,
+                            Description = x.Description,
+                            Status = x.Status,
+                            CategoryId = x.CategoryId,
+                            DistrictId = x.DistrictId,
+                            District = context.Districts.Include(c => c.City)
+                                                        .Where(d => d.Id == x.DistrictId).Single()
+                        });
+            return await reportModels.ToListAsync();
+        }
+
         public async Task<ReportServiceModel> GetAllReports(string? searchTerm = null, int currentPage = 1,
             int reportsPerPage = 6)
         {
