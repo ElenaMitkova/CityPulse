@@ -1,4 +1,6 @@
-﻿namespace CityPulse.Common
+﻿using Microsoft.Identity.Client;
+
+namespace CityPulse.Common
 {
     public static class EntityValidations
     {
@@ -35,6 +37,16 @@
         {
             public const int ReportTitleMinLength = 2;
             public const int ReportTitleMaxLength = 200;
+        }
+
+        public static class ValidationMessages
+        {
+            public const string CategoryErrorMessage = "Please, enter category name!";
+            public const string CityErrorMessage = "Please, enter city name!";
+            public const string CommentErrorMessage = "Please, enter description!";
+            public const string DistrictErrorMessage = "Please, enter district name!";
+            public const string ReportErrorMessage = "Please, enter report title";
+            public const string RequiredErrorMessage = "This field is required!";
         }
     }
 }
