@@ -17,16 +17,19 @@ namespace CityPulse.Controllers
                                     IDistrictsService districtsService, ICitiesService citiesService) 
         : Controller
     {
-        public async Task<IActionResult> Index(int? categoryId)
+        public async Task<IActionResult> Index(int? categoryId, string? searchTerm = null,
+                                               int currentPage = 1)
         {
-            List<ReportModel> models = await reportsService.GetAllReports();
+            ReportServiceModel model = await reportsService.GetAllReports(searchTerm, currentPage);
+            List<ReportModel> reportModels = model.Reports.ToList();
             if (categoryId.HasValue)
             {
-                models = models.Where(x => x.CategoryId == categoryId).ToList();
+                reportModels = reportModels.Where(x => x.CategoryId == categoryId).ToList();
             }
             ViewData["Categories"] = await categoriesService.GetAllCategories();
             ViewData["SelectedCategoryId"] = categoryId;
-            return View(models);
+            ViewData["TotalReportsCount"] = model.TotalReportsCount;
+            return View(reportModels);
         }
 
         public async Task<IActionResult> Details(int id)
@@ -65,7 +68,7 @@ namespace CityPulse.Controllers
             model.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (ModelState.IsValid)
             {
-                List<ReportModel> models = await reportsService.GetAllReports();
+                List<ReportModel> models = await reportsService.GetAll();
                 await reportsService.CreateReport(model, User.FindFirstValue(ClaimTypes.NameIdentifier));
                 return RedirectToAction(nameof(Index), models);
             }
@@ -87,7 +90,7 @@ namespace CityPulse.Controllers
         {
             if (ModelState.IsValid)
             {
-                List<ReportModel> models = await reportsService.GetAllReports();
+                List<ReportModel> models = await reportsService.GetAll();
                 await reportsService.UpdateReport(model);
                 return RedirectToAction(nameof(Index), models);
             }
