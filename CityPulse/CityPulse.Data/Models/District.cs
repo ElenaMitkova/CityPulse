@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static CityPulse.Common.EntityValidations.ValidationMessages;
 
 namespace CityPulse.Models
 {
@@ -8,7 +9,7 @@ namespace CityPulse.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please, enter district name!")]
+        [Required(ErrorMessage = DistrictErrorMessage)]
         [MaxLength()]
         public string Name { get; set; } = null!;
 

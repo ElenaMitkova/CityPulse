@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static CityPulse.Common.EntityValidations;
 using static CityPulse.Common.EntityValidations.Report;
+using static CityPulse.Common.EntityValidations.ValidationMessages;
 
 namespace CityPulse.Models
 {
@@ -12,11 +13,11 @@ namespace CityPulse.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please, enter report title")]
+        [Required(ErrorMessage = ReportErrorMessage)]
         [MaxLength(ReportTitleMaxLength)]
         public string Title { get; set; } = null!;
 
-        [Required(ErrorMessage = "This field is required!")]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         public string Description { get; set; } = null!;
 
         [Column(TypeName = DateTimeColumnType)]
@@ -25,13 +26,13 @@ namespace CityPulse.Models
         [Required]
         public ReportStatus Status { get; set; }
 
-        [Required(ErrorMessage = "This field is required!")]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
 
         public Category? Category { get; set; }
 
-        [Required(ErrorMessage = "This field is required!")]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [ForeignKey(nameof(District))]
         public int DistrictId { get; set; }
 

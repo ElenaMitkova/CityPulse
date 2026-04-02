@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static CityPulse.Common.EntityValidations.ValidationMessages;
 
 namespace CityPulse.Data.Models
 {
@@ -10,7 +11,7 @@ namespace CityPulse.Data.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please, enter city name!")]
+        [Required(ErrorMessage = CommentErrorMessage)]
         [MaxLength(100)]
         public string Description { get; set; } = null!;
 
