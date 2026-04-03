@@ -32,10 +32,8 @@ namespace CityPulse.Services.Services
 
         public async Task CreateDistrict(District model, int id)
         {
-            District district = new District();
-            district.Name = model.Name;
-            district.CityId = id;
-            await context.Districts.AddAsync(district);
+            model.CityId = id;
+            await context.Districts.AddAsync(model);
             await context.SaveChangesAsync();
         }
 
