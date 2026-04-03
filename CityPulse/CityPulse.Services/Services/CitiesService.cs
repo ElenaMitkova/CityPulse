@@ -15,9 +15,7 @@ namespace CityPulse.Services.Services
 
         public async Task CreateCity(City model)
         {
-            City city = new City();
-            city.Name = model.Name;
-            await context.Cities.AddAsync(city);
+            await context.Cities.AddAsync(model);
             await context.SaveChangesAsync();
         }
 

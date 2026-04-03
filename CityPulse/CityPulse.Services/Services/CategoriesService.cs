@@ -12,11 +12,10 @@ namespace CityPulse.Services.Services
             IQueryable<Category> categories = context.Categories.Include(x => x.Reports);
             return await categories.ToListAsync();
         }
+
         public async Task CreateCategory(Category model)
         {
-            Category category = new Category();
-            category.Name = model.Name;
-            await context.Categories.AddAsync(category);
+            await context.Categories.AddAsync(model);
             await context.SaveChangesAsync();
         }
 
@@ -26,6 +25,5 @@ namespace CityPulse.Services.Services
             context.Categories.Remove(category);
             await context.SaveChangesAsync();
         }
-
     }
 }
