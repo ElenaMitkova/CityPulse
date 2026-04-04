@@ -129,7 +129,7 @@ namespace CityPulse.Services.Services
         {
             Report report = context.Reports.Single(x => x.Id == model.Id);
             report.Title = model.Title;
-            report.Description = report.Description;
+            report.Description = model.Description;
             report.Status = model.Status;
             report.DistrictId = model.DistrictId;
             await context.SaveChangesAsync();

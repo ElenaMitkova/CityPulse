@@ -97,5 +97,21 @@ namespace CityPulse.Controllers
             ViewData["Districts"] = await districtsService.GetAllDistrictsByGroup();
             return View(model);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var report = await reportsService.GetReportById(id);
+            if (report == null)
+            {
+                return NotFound();
+            }
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (report.UserId != currentUserId)
+            {
+                return Forbid();
+            }
+            await reportsService.DeleteReport(report);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
