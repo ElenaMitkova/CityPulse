@@ -94,7 +94,14 @@ namespace CityPulse.Tests
 
             for (int i = 1; i <= 5; i++)
             {
-                context.Reports.Add(new Report { Id = i, Title = $"Report {i}", Description = "Desc", CreatedAt = DateTime.Now, UserId = "1" });
+                context.Reports.Add(new Report
+                { 
+                    Id = i, 
+                    Title = $"Report {i}", 
+                    Description = "Desc", 
+                    CreatedAt = DateTime.Now, 
+                    UserId = "1" 
+                });
             }
             await context.SaveChangesAsync();
 
@@ -109,7 +116,13 @@ namespace CityPulse.Tests
         {
             var options = Get();
             using var context = new ApplicationDbContext(options);
-            context.Reports.Add(new Report { Title = "Title", Description = "CRITICAL ERROR", CreatedAt = DateTime.Now, UserId = "1" });
+            context.Reports.Add(new Report 
+            { 
+                Title = "Title", 
+                Description = "CRITICAL ERROR", 
+                CreatedAt = DateTime.Now, 
+                UserId = "1" 
+            });
             await context.SaveChangesAsync();
             var service = new ReportsService(context);
 
@@ -124,12 +137,21 @@ namespace CityPulse.Tests
         {
             var options = Get();
             using var context = new ApplicationDbContext(options);
-            var report = new Report { Id = 10, Title = "To be deleted", Description = "Desc", UserId = "1" };
+            var report = new Report 
+            { 
+                Id = 10, 
+                Title = "To be deleted", 
+                Description = "Desc", 
+                UserId = "1" 
+            };
             context.Reports.Add(report);
             await context.SaveChangesAsync();
 
             var service = new ReportsService(context);
-            var model = new ReportModel { Id = 10 };
+            var model = new ReportModel 
+            { 
+                Id = 10 
+            };
 
             await service.DeleteReport(model);
 
