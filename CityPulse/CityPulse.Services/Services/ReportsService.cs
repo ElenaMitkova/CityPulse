@@ -128,6 +128,12 @@ namespace CityPulse.Services.Services
         public async Task UpdateReport(ReportModel model)
         {
             Report report = context.Reports.Single(x => x.Id == model.Id);
+
+            if (report == null)
+            {
+                throw new KeyNotFoundException($"Report with ID {model.Id} not found.");
+            }
+
             report.Title = model.Title;
             report.Description = model.Description;
             report.Status = model.Status;
