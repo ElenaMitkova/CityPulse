@@ -1,5 +1,8 @@
 <Solution>
   <Project Path="CityPulse.Data/CityPulse.Data.csproj" Id="7c65249d-a4a2-429e-871b-a782eeda5d6f" />
   <Project Path="CityPulse.Services/CityPulse.Services.csproj" Id="d731f7c4-aa72-4013-b13b-4e20cf5772ee" />
+  <Project Path="CityPulse.Tests/CityPulse.Tests.csproj" Id="c12e4345-5a9b-421f-9a62-76aef9c70d6d">
+    <Build Solution="Debug|*" Project="false" />
+  </Project>
   <Project Path="CityPulse/CityPulse.csproj" />
 </Solution>
