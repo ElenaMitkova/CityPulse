@@ -1,4 +1,5 @@
-﻿using CityPulse.Models;
+﻿using CityPulse.Data.Models;
+using CityPulse.Models;
 using CityPulse.Models.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,5 +24,7 @@ namespace CityPulse.Services.Models
         public int DistrictId { get; set; }
 
         public District? District { get; set; }
+
+        public IEnumerable<Comment> Comments { get; set; } = new HashSet<Comment>();
     }
 }

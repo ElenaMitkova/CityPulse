@@ -14,8 +14,7 @@
 
     <div class="row">
         <div class="col-lg-8">
-            <div class="glass-panel-light p-4 p-md-5 rounded-4 shadow-sm h-100">
-                
+            <div class="glass-panel-light p-4 p-md-5 rounded-4 shadow-sm">
                 <div class="d-flex justify-content-between align-items-start mb-4">
                     <div>
                         <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-2">
@@ -42,30 +41,67 @@
                 <hr class="my-4 opacity-25">
 
                 <h4 class="fw-bold mb-3">Description</h4>
-                <p class="text-secondary lh-lg">
+                <p class="text-secondary lh-lg mb-0">
                     @Model.Description
                 </p>
             </div>
+
+            <div class="glass-panel-light p-4 p-md-5 rounded-4 shadow-sm mt-4">
+                <h4 class="fw-bold mb-4"><i class="bi bi-chat-left-text me-2"></i> Comments</h4>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form asp-controller="Comments" asp-action="Create" method="post" class="mb-4">
+                        <input type="hidden" name="ReportId" value="@Model.Id" />
+                        <div class="mb-3">
+                            <textarea name="Content" class="form-control rounded-4 bg-light border-0" rows="3" placeholder="Write a comment..."></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary rounded-pill px-4">Post Comment</button>
+                        </div>
+                    </form>
+                }
+
+                <div class="comments-container">
+                    @if (Model.Comments != null && Model.Comments.Any())
+                    {
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="p-3 mb-3 rounded-4 bg-white bg-opacity-25 border border-white border-opacity-10">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="fw-bold small text-primary">@comment.User.Email</span>
+                                    <span class="text-muted x-small">@comment.CreatedOn.ToString("g")</span>
+                                </div>
+                                <p class="mb-0 small text-secondary">@comment.Description</p>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted text-center my-4 small">No comments yet.</p>
+                    }
+                </div>
+            </div>
         </div>
+
         <div class="col-lg-4 mt-4 mt-lg-0">
-            @if (User.FindFirstValue(ClaimTypes.NameIdentifier) == Model.UserId)
-            {
-                <div class="glass-panel-light p-4 rounded-4 shadow-sm border-0">
-                    <div class="mt-4 d-grid gap-2">
+            <div class="glass-panel-light p-4 rounded-4 shadow-sm border-0">
+                <div class="d-grid gap-2">
+                    @if (User.FindFirstValue(ClaimTypes.NameIdentifier) == Model.UserId)
+                    {
                         <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-dark rounded-pill">
                             <i class="bi bi-pencil-square me-2"></i> Edit Report
                         </a>
-                    </div>
+                    }
+                    
                     @if (User.IsInRole("Administrator"))
                     {
-                        <div class="mt-4 d-grid gap-2">
-                            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-dark rounded-pill">
-                                <i class="bi bi-pencil-square me-2"></i> Delete Report
-                            </a>
-                        </div>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger rounded-pill">
+                            <i class="bi bi-trash3 me-2"></i> Delete Report
+                        </a>
                     }
                 </div>
-            }
+            </div>
         </div>
     </div>
 </div>
