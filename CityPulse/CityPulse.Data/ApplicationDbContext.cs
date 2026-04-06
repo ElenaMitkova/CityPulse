@@ -23,6 +23,12 @@ namespace CityPulse.Data
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<Comment>()
+                    .HasOne(c => c.User)
+                    .WithMany()
+                    .HasForeignKey(c => c.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
     }
