@@ -14,7 +14,7 @@ using static CityPulse.Common.EntityValidations;
 namespace CityPulse.Controllers
 {
     public class ReportsController(IReportsService reportsService, ICategoriesService categoriesService,
-                                    IDistrictsService districtsService, ICitiesService citiesService) 
+                                    IDistrictsService districtsService, ICitiesService citiesService, ICommentsService commentsService) 
         : Controller
     {
         public async Task<IActionResult> Index(int? categoryId, string? searchTerm = null,
@@ -35,6 +35,7 @@ namespace CityPulse.Controllers
         public async Task<IActionResult> Details(int id)
         {
             ReportModel model = await reportsService.GetReportById(id);
+            model.Comments = await commentsService.GetAllCommentsByReport(id);
             return View(model);
         }
 

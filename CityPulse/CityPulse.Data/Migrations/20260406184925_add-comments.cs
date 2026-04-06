@@ -5,7 +5,7 @@
 namespace CityPulse.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class CommentAdding : Migration
+    public partial class addcomments : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -45,7 +45,7 @@ namespace CityPulse.Data.Migrations
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />

@@ -1,8 +1,11 @@
-﻿namespace CityPulse.Services.Common
+﻿using CityPulse.Data.Models;
+
+namespace CityPulse.Services.Common
 {
     public interface ICommentsService
     {
-        Task AddCommentAsync(int reportId, string userId, string content);
-        Task<bool> DeleteCommentAsync(int commentId, string userId, bool isAdmin);
+        Task AddComment(Comment comment);
+        Task DeleteComment(int id);
+        Task<List<Comment>> GetAllCommentsByReport(int id);
     }
 }

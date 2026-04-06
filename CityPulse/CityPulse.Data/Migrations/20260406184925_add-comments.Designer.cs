@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CityPulse.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260329193541_Comment-Adding")]
-    partial class CommentAdding
+    [Migration("20260406184925_add-comments")]
+    partial class addcomments
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -580,7 +580,7 @@ namespace CityPulse.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Report");
